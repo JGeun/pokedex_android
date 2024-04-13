@@ -1,0 +1,83 @@
+[versions]
+agp = "8.3.1"
+kotlin = "1.9.0"
+
+# Config Versions
+compileSdk = "34"
+minSdk = "26"
+targetSdk = "34"
+versionCode = "1"
+versionName = "1.0.0"
+jvmTarget = "1.8"
+kotlinCompilerExtension = "1.5.1"
+
+# Compose
+activityCompose = "1.8.2"
+composeBom = "2024.04.00"
+composeUi = "1.6.5"
+coreKtx = "1.12.0"
+lifecycleRuntimeKtx = "2.7.0"
+composeHiltNavigation = "1.2.0"
+composeLifecycleRuntime = "2.7.0"
+material3 = "1.2.1"
+
+
+# Dependency Injection
+hilt = "2.51"
+
+# Test
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+junitKtx = "1.1.5"
+monitor = "1.6.1"
+
+[libraries]
+# AndroidX
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+
+# Compose
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose = { module = "androidx.activity:activity-compose", version.ref = "composeUi" }
+androidx-compose-graphics = { module = "androidx.compose.ui:ui-graphics", version.ref = "composeUi" }
+androidx-compose-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeUi" }
+compose-hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref =  "composeHiltNavigation"}
+compose-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycleRuntime"}
+compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
+
+# Hilt
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+
+# Test
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
+
+# Debug
+androidx-compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeUi" }
+androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeUi" }
+androidx-monitor = { group = "androidx.test", name = "monitor", version.ref = "monitor" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+[bundles]
+# Base
+androidx = ["androidx-core-ktx", "androidx-lifecycle-runtime-ktx"]
+compose = ["androidx-compose-bom", "androidx-activity-compose", "androidx-compose", "androidx-compose-graphics", "androidx-compose-tooling-preview",
+    "compose-hilt-navigation", "compose-lifecycle-runtime", "compose-material3"]
+
+# Test
+test = ["junit"]
+androidx-test = ["androidx-junit", "androidx-espresso-core", "androidx-junit-ktx"]
+compose-test = ["androidx-compose-bom", "androidx-ui-test-junit4"]
+
+# Debug
+compose-debug = ["androidx-compose-tooling", "androidx-ui-test-manifest"]
