@@ -64,4 +64,14 @@ abstract class ApiAbstract<T> {
 			.build()
 			.create(clazz)
 	}
+
+	fun createService2(clazz: Class<T>): T {
+		val json = Json { ignoreUnknownKeys = true }
+
+		return Retrofit.Builder()
+			.baseUrl(mockWebServer.url("https://pokeapi.co/api/v2/"))
+			.addConverterFactory(json.asConverterFactory("application/json; charset=UTF8".toMediaType()))
+			.build()
+			.create(clazz)
+	}
 }
