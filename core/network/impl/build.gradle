@@ -46,12 +46,15 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:model"))
     implementation(project(":core:network:api"))
     implementation(libs.bundles.network)
     implementation(libs.kotlinx.serialization)
     implementation(libs.hilt.android)
+    implementation libs.play.services.basement
     kapt(libs.hilt.compiler)
 
+    testImplementation(project(":core:model"))
     testImplementation(project(":core:test"))
     testImplementation(libs.bundles.test)
     testImplementation(libs.coroutines.test)

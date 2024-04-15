@@ -1,5 +1,6 @@
 package com.jgeun.pokedex.core.networkimpl
 
+import com.jgeun.pokedex.core.model.common.NetworkResult
 import com.jgeun.pokedex.core.network.api.PokedexService
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers
@@ -21,9 +22,8 @@ class PokedexServiceTest2 : ApiAbstract<PokedexService>() {
     @Test
     fun fetchPokemonInfoFromNetworkTest() = runTest {
         val response = service.fetchPokemonInfo("bulbasaur")
-        val responseBody = requireNotNull(response.body())
+        val responseBody = requireNotNull((response as NetworkResult.Success).data)
 
-        println(response.body())
         MatcherAssert.assertThat(responseBody.id, CoreMatchers.`is`(1))
         MatcherAssert.assertThat(responseBody.name, CoreMatchers.`is`("bulbasaur"))
         MatcherAssert.assertThat(responseBody.height, CoreMatchers.`is`(7))

@@ -1,6 +1,7 @@
 package com.jgeun.pokedex.core.networkimpl.di
 
 import com.jgeun.pokedex.core.networkimpl.BuildConfig
+import com.jgeun.pokedex.core.networkimpl.adapter.NetworkResultCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,7 +44,9 @@ internal object NetworkModule {
 		Retrofit.Builder()
 			.baseUrl(BuildConfig.BASE_URL)
 			.addConverterFactory(
-				Json.asConverterFactory("application/json; charset=UTF8".toMediaType()))
+				Json.asConverterFactory("application/json; charset=UTF8".toMediaType())
+			)
+			.addCallAdapterFactory(NetworkResultCallAdapterFactory.create())
 			.client(okHttpClient)
 			.build()
 }

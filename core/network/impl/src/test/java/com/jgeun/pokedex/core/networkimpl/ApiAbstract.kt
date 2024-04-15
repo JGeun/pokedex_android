@@ -1,6 +1,7 @@
 package com.jgeun.pokedex.core.networkimpl
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.jgeun.pokedex.core.networkimpl.adapter.NetworkResultCallAdapterFactory
 import com.jgeun.pokedex.test.MainCoroutinesRule
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -61,6 +62,7 @@ abstract class ApiAbstract<T> {
 		return Retrofit.Builder()
 			.baseUrl(mockWebServer.url("/"))
 			.addConverterFactory(json.asConverterFactory("application/json; charset=UTF8".toMediaType()))
+			.addCallAdapterFactory(NetworkResultCallAdapterFactory.create())
 			.build()
 			.create(clazz)
 	}
@@ -71,6 +73,7 @@ abstract class ApiAbstract<T> {
 		return Retrofit.Builder()
 			.baseUrl(mockWebServer.url("https://pokeapi.co/api/v2/"))
 			.addConverterFactory(json.asConverterFactory("application/json; charset=UTF8".toMediaType()))
+			.addCallAdapterFactory(NetworkResultCallAdapterFactory.create())
 			.build()
 			.create(clazz)
 	}

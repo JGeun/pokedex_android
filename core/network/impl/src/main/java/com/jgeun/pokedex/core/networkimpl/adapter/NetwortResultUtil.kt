@@ -1,11 +1,11 @@
-package com.jgeun.pokedex.core.network.util
+package com.jgeun.pokedex.core.networkimpl.adapter
 
-import com.jgeun.pokedex.core.network.model.NetworkResult
+import com.jgeun.pokedex.core.model.common.NetworkResult
 import retrofit2.HttpException
 import retrofit2.Response
 
-suspend fun <T: Any> handleApi(
-	execute: suspend () -> Response<T>
+internal fun <T: Any> handleApi(
+	execute: () -> Response<T>
 ) : NetworkResult<T> {
 	return try {
 		val response = execute()
