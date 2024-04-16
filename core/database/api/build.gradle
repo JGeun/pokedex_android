@@ -1,0 +1,43 @@
+plugins {
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
+    alias(libs.plugins.kotlinxSerialization)
+}
+
+android {
+    namespace 'com.jgeun.pokedex.core.database.api'
+    compileSdk libs.versions.compileSdk.get().toInteger()
+
+    defaultConfig {
+        minSdk libs.versions.minSdk.get().toInteger()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = libs.versions.jvmTarget.get()
+    }
+}
+
+dependencies {
+    implementation(project(":core:model"))
+    implementation(libs.room.runtime)
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt(libs.room.compiler)
+    implementation(libs.kotlinx.serialization)
+
+    testImplementation(libs.bundles.test)
+    testImplementation(libs.kotlinx.serialization)
+}
