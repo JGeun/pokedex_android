@@ -30,6 +30,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:model"))
 
     implementation(libs.bundles.test)
     implementation(libs.coroutines.test)
