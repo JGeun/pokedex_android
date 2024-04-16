@@ -40,13 +40,15 @@ internal object NetworkModule {
 
 	@Provides
 	@Singleton
-	fun providesPokedexRetrofit(okHttpClient: OkHttpClient): Retrofit =
-		Retrofit.Builder()
+	fun providesPokedexRetrofit(okHttpClient: OkHttpClient): Retrofit {
+		val json = Json { isLenient = true }
+		return Retrofit.Builder()
 			.baseUrl(BuildConfig.BASE_URL)
 			.addConverterFactory(
-				Json.asConverterFactory("application/json; charset=UTF8".toMediaType())
+				json.asConverterFactory("application/json; charset=UTF8".toMediaType())
 			)
 			.addCallAdapterFactory(NetworkResultCallAdapterFactory.create())
 			.client(okHttpClient)
 			.build()
+	}
 }
