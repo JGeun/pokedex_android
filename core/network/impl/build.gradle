@@ -51,7 +51,6 @@ dependencies {
     implementation(libs.bundles.network)
     implementation(libs.kotlinx.serialization)
     implementation(libs.hilt.android)
-    implementation libs.play.services.basement
     kapt(libs.hilt.compiler)
 
     testImplementation(project(":core:model"))
