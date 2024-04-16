@@ -11,11 +11,13 @@ class TypeResponseConverter {
 
     @TypeConverter
     fun fromString(value: String): List<PokemonInfo.TypeResponse> {
-        return Json.decodeFromString<List<PokemonInfo.TypeResponse>>(value)
+        val json = Json { isLenient = true }
+        return json.decodeFromString<List<PokemonInfo.TypeResponse>>(value)
     }
 
     @TypeConverter
-    fun fromInfoType(typeResponseList: List<PokemonInfo.TypeResponse>?): String {
-        return Json.encodeToString(typeResponseList)
+    fun fromInfoTypeList(typeResponseList: List<PokemonInfo.TypeResponse>?): String {
+        val json = Json { isLenient = true }
+        return json.encodeToString(typeResponseList)
     }
 }
