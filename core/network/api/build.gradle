@@ -32,10 +32,11 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
-
     testImplementation(project(":core:test"))
 
     implementation(libs.bundles.network)
+    implementation(libs.kotlinx.serialization)
+
     testImplementation(libs.bundles.test)
     testImplementation(libs.okhttp3.mockserver)
 }
