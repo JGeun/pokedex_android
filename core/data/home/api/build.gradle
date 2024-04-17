@@ -33,8 +33,4 @@ dependencies {
     implementation(project(":core:model"))
 
     implementation(libs.coroutines)
-
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.junit
-    androidTestImplementation libs.androidx.espresso.core
 }
