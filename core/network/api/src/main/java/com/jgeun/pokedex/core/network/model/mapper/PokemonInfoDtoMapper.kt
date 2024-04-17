@@ -18,6 +18,11 @@ object PokemonInfoDtoMapper : DtoMapper<PokemonInfo, PokemonInfoDto> {
                      type = PokemonInfoDto.Type(type.type.name)
                 )
             },
+            hp = domain.hp,
+            attack = domain.attack,
+            defense = domain.defense,
+            speed = domain.speed,
+            exp = domain.exp
         )
     }
 
@@ -33,7 +38,12 @@ object PokemonInfoDtoMapper : DtoMapper<PokemonInfo, PokemonInfoDto> {
                 slot = type.slot,
                 type = PokemonInfo.Type(type.type.name)
               )
-            }
+            },
+            hp = dto.hp,
+            attack = dto.attack,
+            defense = dto.defense,
+            speed = dto.speed,
+            exp = dto.exp
         )
     }
 }
