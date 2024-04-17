@@ -1,5 +1,7 @@
 package com.jgeun.pokedex.core.networkimpl.di
 
+import com.jgeun.pokedex.core.network.api.PokedexClient
+import com.jgeun.pokedex.core.network.api.PokedexService
 import com.jgeun.pokedex.core.networkimpl.BuildConfig
 import com.jgeun.pokedex.core.networkimpl.adapter.NetworkResultCallAdapterFactory
 import dagger.Module
@@ -50,5 +52,17 @@ internal object NetworkModule {
 			.addCallAdapterFactory(NetworkResultCallAdapterFactory.create())
 			.client(okHttpClient)
 			.build()
+	}
+
+	@Provides
+	@Singleton
+	fun providesPokedexService(retrofit: Retrofit): PokedexService {
+		return retrofit.create(PokedexService::class.java)
+	}
+
+	@Provides
+	@Singleton
+	fun providesPokedexClient(pokedexService: PokedexService): PokedexClient {
+		return PokedexClient(pokedexService)
 	}
 }
