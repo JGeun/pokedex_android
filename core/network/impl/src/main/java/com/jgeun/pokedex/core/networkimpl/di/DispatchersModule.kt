@@ -1,8 +1,7 @@
 package com.jgeun.pokedex.core.networkimpl.di
 
-import androidx.core.view.WindowInsetsAnimationCompat.Callback.DispatchMode
-import com.jgeun.pokedex.core.networkimpl.Dispatcher
-import com.jgeun.pokedex.core.networkimpl.PokedexDispatchers
+import com.jgeun.pokedex.core.network.Dispatcher
+import com.jgeun.pokedex.core.network.PokedexDispatchers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
