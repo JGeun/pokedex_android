@@ -26,7 +26,7 @@ internal class NetworkResultCall<T : Any>(
             }
 
             override fun onFailure(call: Call<T>, t: Throwable) {
-                val networkResult = NetworkResult.Exception(t)
+                val networkResult = NetworkResult.Exception<T>(t)
                 callback.onResponse(this@NetworkResultCall, Response.success(networkResult))
             }
         })
