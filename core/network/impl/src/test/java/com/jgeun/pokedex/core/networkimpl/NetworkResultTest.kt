@@ -13,8 +13,8 @@ class NetworkResultTest {
     @Test
     fun exception() {
         val exception = Exception("foo")
-        val result = NetworkResult.Exception(exception)
-        assertThat(result.t?.message, `is`("foo"))
+        val result = NetworkResult.Exception<Any>(exception)
+        assertThat(result.t.message, `is`("foo"))
     }
 
     @Test

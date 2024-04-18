@@ -1,4 +1,4 @@
-package com.jgeun.pokedex.core.networkimpl
+package com.jgeun.pokedex.core.network
 
 import javax.inject.Qualifier
 

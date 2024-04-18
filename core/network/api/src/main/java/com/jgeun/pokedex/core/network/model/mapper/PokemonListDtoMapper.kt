@@ -26,7 +26,7 @@ object PokemonListDtoMapper : DtoMapper<List<Pokemon>, List<PokemonDto>> {
   }
 }
 
-fun List<Pokemon>.asEntity(): List<PokemonDto> {
+fun List<Pokemon>.asDto(): List<PokemonDto> {
   return PokemonListDtoMapper.asDto(this)
 }
 
