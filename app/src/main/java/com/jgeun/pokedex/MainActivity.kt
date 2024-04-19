@@ -6,38 +6,36 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.jgeun.pokedex.core.navigator.DetailNavigator
+import com.jgeun.pokedex.core.navigator.HomeNavigator
+import com.jgeun.pokedex.core.navigator.PokedexNavHost
 import com.jgeun.pokedex.ui.theme.PokedexTheme
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+	@Inject lateinit var homeNavigator: HomeNavigator
+	@Inject lateinit var detailNavigator: DetailNavigator
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContent {
+			val navController = rememberNavController()
+
 			PokedexTheme {
 				// A surface container using the 'background' color from the theme
 				Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-					Greeting("Android")
+					PokedexNavHost(
+						navHostController = navController,
+						homeNavigator = homeNavigator,
+						detailNavigator = detailNavigator
+					)
 				}
 			}
 		}
-	}
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-	Text(
-		text = "Hello $name!",
-		modifier = modifier
-	)
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-	PokedexTheme {
-		Greeting("Android")
 	}
 }
