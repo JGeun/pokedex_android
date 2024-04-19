@@ -1,25 +1,19 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
 
 android {
-    namespace 'com.jgeun.pokedex'
+    namespace 'com.jgeun.pokedex.feature.home.impl'
     compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        applicationId "com.jgeun.pokedex"
         minSdk libs.versions.minSdk.get().toInteger()
-        targetSdk libs.versions.targetSdk.get().toInteger()
-        versionCode libs.versions.versionCode.get().toInteger()
-        versionName libs.versions.versionName.get()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -36,27 +30,18 @@ android {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
-        buildConfig true
         compose true
     }
     composeOptions {
         kotlinCompilerExtensionVersion libs.versions.kotlinCompilerExtension.get()
     }
-    packaging {
-        resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-        }
-    }
 }
 
 dependencies {
-    implementation(project(":feature:core"))
-    runtimeOnly(project(":feature:home:impl"))
-    runtimeOnly(project(":feature:detail:impl"))
-    runtimeOnly(project(":core:data:home:impl"))
-    runtimeOnly(project(":core:database:impl"))
-    runtimeOnly(project(":core:network:impl"))
-    runtimeOnly(project(":core:model"))
+    implementation project(':feature:core')
+    implementation(project(":feature:home:api"))
+    implementation(project(":core:data:home:api"))
+    implementation(project(":core:model"))
 
     implementation(libs.bundles.androidx)
     implementation(libs.bundles.compose)
@@ -65,6 +50,4 @@ dependencies {
 
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.androidx.test)
-    androidTestImplementation(libs.bundles.compose.test)
-    debugImplementation(libs.bundles.compose.debug)
 }
