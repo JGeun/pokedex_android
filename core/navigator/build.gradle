@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.jgeun.pokedex.feature.core'
+    namespace 'com.jgeun.pokedex.core.navigator'
     compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {

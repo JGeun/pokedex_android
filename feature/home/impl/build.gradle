@@ -38,8 +38,8 @@ android {
 }
 
 dependencies {
-    implementation project(':feature:core')
     implementation(project(":feature:home:api"))
+    implementation project(':core:navigator')
     implementation(project(":core:data:home:api"))
     implementation(project(":core:model"))
 

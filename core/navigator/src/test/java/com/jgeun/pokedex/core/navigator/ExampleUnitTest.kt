@@ -1,4 +1,4 @@
-package com.jgeun.pokedex.feature.core
+package com.jgeun.pokedex.core.navigator
 
 import org.junit.Test
 
