@@ -4,8 +4,6 @@ import com.jgeun.pokedex.core.data.home.api.repository.HomeRepository
 import com.jgeun.pokedex.core.database.api.PokemonDao
 import com.jgeun.pokedex.core.database.api.entity.PokemonEntity
 import com.jgeun.pokedex.core.database.api.entity.mapper.asDomain
-import com.jgeun.pokedex.core.model.Pokemon
-import com.jgeun.pokedex.core.model.common.NetworkResult
 import com.jgeun.pokedex.core.model.common.onException
 import com.jgeun.pokedex.core.model.common.onFailure
 import com.jgeun.pokedex.core.model.common.onSuccess
@@ -15,6 +13,8 @@ import com.jgeun.pokedex.core.network.api.PokedexClient
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class HomeRepositoryImpl @Inject constructor(
@@ -25,6 +25,9 @@ class HomeRepositoryImpl @Inject constructor(
 
     override fun fetchPokemonList(
         page: Int,
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit
     ) = flow {
         val pokemonList = pokemonDao.getPokemonList(page).asDomain()
         if (pokemonList.isEmpty()) {
@@ -34,15 +37,14 @@ class HomeRepositoryImpl @Inject constructor(
                     PokemonEntity(page = page, name = it.name, url = it.url)
                 }
                 pokemonDao.insertPokemonList(pokemonEntityList)
-                emit(NetworkResult.Success(pokemonDao.getAllPokemonList(page).asDomain()))
+                emit(pokemonDao.getAllPokemonList(page).asDomain())
             }.onFailure { code, message ->
-                emit(NetworkResult.Error<List<Pokemon>>(code, message))
+                onError("$code $message")
             }.onException { throwable ->
-                emit(NetworkResult.Exception<List<Pokemon>>(throwable))
+                onError(throwable.message)
             }
         } else {
-            emit(NetworkResult.Success(pokemonDao.getAllPokemonList(page).asDomain()))
+            emit(pokemonDao.getAllPokemonList(page).asDomain())
         }
-    }.flowOn(ioDispatcher)
-
+    }.onStart { onStart() }.onCompletion { onComplete() }.flowOn(ioDispatcher)
 }
