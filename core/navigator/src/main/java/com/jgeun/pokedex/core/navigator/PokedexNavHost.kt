@@ -16,7 +16,7 @@ fun PokedexNavHost(
     ) {
         homeNavigator.homeScreen(
             builder = this,
-            onNavigateToDetail = { detailNavigator.navigateToDetailScreen(navHostController) }
+            onNavigateToDetail = { pokemon -> detailNavigator.navigateToDetailScreen(navHostController) }
         )
 
         detailNavigator.detailScreen(this)

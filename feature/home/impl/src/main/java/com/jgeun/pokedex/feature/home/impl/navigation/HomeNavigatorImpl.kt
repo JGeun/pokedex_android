@@ -4,6 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import com.jgeun.pokedex.core.model.Pokemon
 import com.jgeun.pokedex.core.navigator.HOME_ROUTE
 import com.jgeun.pokedex.core.navigator.HomeNavigator
 import com.jgeun.pokedex.feature.home.impl.HomeRoute
@@ -15,7 +16,7 @@ class HomeNavigatorImpl @Inject constructor(
 
     override fun homeScreen(
         builder: NavGraphBuilder,
-        onNavigateToDetail: () -> Unit
+        onNavigateToDetail: (pokemon: Pokemon) -> Unit
     ) = builder.run {
 
         composable(

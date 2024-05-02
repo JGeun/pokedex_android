@@ -47,6 +47,10 @@ coroutines = "1.7.1"
 # Database
 room = "2.6.1"
 
+# ImageLoader
+glide-compose-version = "1.0.0-beta01"
+glide-version = "4.15.1"
+
 [libraries]
 # AndroidX
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -100,6 +104,11 @@ room-test = { module = "androidx.room:room-testing", version.ref = "room" }
 # Asynchronous
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines"}
 
+# ImageLoader
+glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glide-compose-version" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide-version" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide-version" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -123,3 +132,6 @@ compose-debug = ["androidx-compose-tooling", "androidx-ui-test-manifest"]
 
 # Network
 network = ["retrofit", "okhttp-logging-interceptor", "kotlinx-serialization-converter"]
+
+# ImageLoader
+imageloader = ["glide-compose", "glide"]
