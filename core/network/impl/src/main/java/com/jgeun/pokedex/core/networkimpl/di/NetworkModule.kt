@@ -45,7 +45,7 @@ internal object NetworkModule {
 	fun providesPokedexRetrofit(okHttpClient: OkHttpClient): Retrofit {
 		val json = Json { isLenient = true }
 		return Retrofit.Builder()
-			.baseUrl(BuildConfig.BASE_URL)
+			.baseUrl("https://pokeapi.co/api/v2/")
 			.addConverterFactory(
 				json.asConverterFactory("application/json; charset=UTF8".toMediaType())
 			)
