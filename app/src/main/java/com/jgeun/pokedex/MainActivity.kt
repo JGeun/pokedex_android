@@ -8,10 +8,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.jgeun.pokedex.core.designsystem.theme.PokedexTheme
 import com.jgeun.pokedex.core.navigator.DetailNavigator
 import com.jgeun.pokedex.core.navigator.HomeNavigator
 import com.jgeun.pokedex.core.navigator.PokedexNavHost
-import com.jgeun.pokedex.ui.theme.PokedexTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

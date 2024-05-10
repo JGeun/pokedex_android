@@ -50,10 +50,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:designsystem"))
     implementation(project(":core:navigator"))
     runtimeOnly(project(":feature:home:impl"))
     runtimeOnly(project(":feature:detail:impl"))
     runtimeOnly(project(":core:data:home:impl"))
+    runtimeOnly(project(":core:data:detail:impl"))
     runtimeOnly(project(":core:database:impl"))
     runtimeOnly(project(":core:network:impl"))
     runtimeOnly(project(":core:model"))

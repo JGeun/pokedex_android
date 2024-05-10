@@ -43,7 +43,10 @@ internal object NetworkModule {
 	@Provides
 	@Singleton
 	fun providesPokedexRetrofit(okHttpClient: OkHttpClient): Retrofit {
-		val json = Json { isLenient = true }
+		val json = Json {
+			isLenient = true
+			ignoreUnknownKeys = true
+		}
 		return Retrofit.Builder()
 			.baseUrl("https://pokeapi.co/api/v2/")
 			.addConverterFactory(
