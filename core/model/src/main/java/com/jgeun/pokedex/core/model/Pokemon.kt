@@ -1,10 +1,16 @@
 package com.jgeun.pokedex.core.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
+
+@Parcelize
+@Serializable
 data class Pokemon(
     var page: Int = 0,
     val nameField: String,
     val url: String,
-) {
+) : Parcelable {
 
     val name: String
         get() = nameField.replaceFirstChar { it.uppercase() }
